@@ -2,6 +2,8 @@ package com.neo.drools.controller;
 
 import com.neo.drools.model.Address;
 import com.neo.drools.model.fact.AddressCheckResult;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 
-
 @RequestMapping("/test")
+@Api(tags = "用户相关接口")
 @Controller
 public class TestController {
 
@@ -19,8 +21,9 @@ public class TestController {
     private KieContainer kieContainer;
 
     @ResponseBody
+    @ApiOperation("新增用户接口")
     @RequestMapping("/address")
-    public void test(int num){
+    public void test(int num) {
         Address address = new Address();
         address.setPostcode(generateRandom(num));
         KieSession kieSession = kieContainer.newKieSession();
@@ -32,7 +35,7 @@ public class TestController {
         kieSession.destroy();
         System.out.println("触发了" + ruleFiredCount + "条规则");
 
-        if(result.isPostCodeResult()){
+        if (result.isPostCodeResult()) {
             System.out.println("规则校验通过");
         }
 
@@ -40,15 +43,16 @@ public class TestController {
 
     /**
      * 生成随机数
+     *
      * @param num
      * @return
      */
     public String generateRandom(int num) {
         String chars = "0123456789";
-        StringBuffer number=new StringBuffer();
+        StringBuffer number = new StringBuffer();
         for (int i = 0; i < num; i++) {
             int rand = (int) (Math.random() * 10);
-            number=number.append(chars.charAt(rand));
+            number = number.append(chars.charAt(rand));
         }
         return number.toString();
     }

@@ -1,8 +1,11 @@
 package com.neo.drools.model;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 
+@ApiModel("Address")
 public class Address {
-
+	@ApiModelProperty("用户 postcode")
 	private String postcode;
 	
 	private String street;

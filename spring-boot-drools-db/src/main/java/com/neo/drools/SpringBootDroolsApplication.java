@@ -6,10 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SpringBootDroolsApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(SpringBootDroolsApplication.class, args);
-	}
-
-
+    public static void main(String[] args) {
+        SpringApplication.run(SpringBootDroolsApplication.class, args);
+    }
 
 }
